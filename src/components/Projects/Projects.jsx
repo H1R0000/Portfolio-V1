@@ -1,6 +1,37 @@
 import { useState } from "react";
 import Dialog from "../Dialog";
+// Add thesis screenshots to src/assets/thesis, then rebuild to include them.
+const thesisImages = Object.entries(
+  import.meta.glob("../../assets/thesis/*.{png,jpg,jpeg,webp,avif}", {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }),
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url);
+const imageSource = (image) =>
+  image.startsWith("/") || image.startsWith("data:")
+    ? image
+    : `/images/${image}.webp`;
 const projects = [
+  {
+    title: "CNN Facial Recognition & GPS Attendance App",
+    category: "Thesis · August 2026",
+    summary: "Verifying attendance through facial recognition and location.",
+    description:
+      "A dual-factor biometric attendance system combining CNN-based facial recognition and GPS authentication for logistics applications.",
+    role: "Functional testing, bug tracking, beta-test coordination, and thesis co-authorship.",
+    approachLabel: "Testing approach",
+    approach:
+      "Conducted comprehensive functional testing and coordinated beta-testing phases to verify system features and evaluate real-world performance.",
+    delivery:
+      "Co-authored the thesis, leading the literature review, system methodology, and technical documentation of test results.",
+    tech: ["CNN", "Facial recognition", "GPS", "Functional testing"],
+    images: thesisImages,
+    coverIndex: 0,
+    featured: true,
+  },
   {
     title: "District Wheels",
     category: "Web development",
@@ -70,28 +101,48 @@ export default function Projects() {
           <h2 id="projects-title">Built with purpose.</h2>
         </div>
         <p>
-          From storefronts to student experiences.
+          From biometric attendance to web and app experiences.
           <br />A closer look at my work.
         </p>
       </div>
       <div className="projects-list">
         {projects.map((project, index) => (
           <article className="project-card" key={project.title}>
-            <button
-              className="project-image"
-              onClick={() => open(project)}
-              aria-label={`Open ${project.title} gallery`}
-            >
-              <img
-                src={`/images/${project.images[1]}.webp`}
-                width="1000"
-                height="700"
-                loading="lazy"
-                decoding="async"
-                alt={`${project.title} interface preview`}
-              />
-              <span className="image-label">View gallery ↗</span>
-            </button>
+            {project.images.length > 0 ? (
+              <button
+                className="project-image"
+                onClick={() => open(project)}
+                aria-label={`Open ${project.title} gallery`}
+              >
+                <img
+                  src={imageSource(
+                    project.images[project.coverIndex ?? 1] ??
+                      project.images[0],
+                  )}
+                  width="1000"
+                  height="700"
+                  loading="lazy"
+                  decoding="async"
+                  alt={`${project.title} interface preview`}
+                />
+                <span className="image-label">View gallery ↗</span>
+              </button>
+            ) : (
+              <div className="project-image thesis-placeholder">
+                <p className="eyebrow">Research & testing</p>
+                <span className="thesis-mark" aria-hidden="true">
+                  CNN + GPS
+                </span>
+                <p>
+                  Facial recognition.
+                  <br />
+                  Location verification.
+                </p>
+                <span className="thesis-image-note">
+                  Screenshots coming soon
+                </span>
+              </div>
+            )}
             <div className="project-copy">
               <p className="eyebrow">
                 0{index + 1} / {project.category}
@@ -104,20 +155,22 @@ export default function Projects() {
                   <li key={tool}>{tool}</li>
                 ))}
               </ul>
-              <details className="project-story">
+              <details className="project-story" open={project.featured}>
                 <summary>My contribution & approach</summary>
                 <dl>
                   <dt>My role</dt>
                   <dd>{project.role}</dd>
-                  <dt>Design approach</dt>
+                  <dt>{project.approachLabel ?? "Design approach"}</dt>
                   <dd>{project.approach}</dd>
                   <dt>What I delivered</dt>
                   <dd>{project.delivery}</dd>
                 </dl>
               </details>
-              <button className="text-button" onClick={() => open(project)}>
-                Explore screenshots ↗
-              </button>
+              {project.images.length > 0 && (
+                <button className="text-button" onClick={() => open(project)}>
+                  Explore screenshots ↗
+                </button>
+              )}
             </div>
           </article>
         ))}
@@ -132,7 +185,7 @@ export default function Projects() {
           <p className="muted">Project screenshots</p>
           <div className="gallery-image">
             <img
-              src={`/images/${selected.images[imageIndex]}.webp`}
+              src={imageSource(selected.images[imageIndex])}
               alt={`${selected.title}, screenshot ${imageIndex + 1} of ${selected.images.length}`}
               width="1400"
               height="1000"
