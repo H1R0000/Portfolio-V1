@@ -1,15 +1,5 @@
 import { useState } from "react";
 import Dialog from "../Dialog";
-// Add thesis screenshots to src/assets/thesis, then rebuild to include them.
-const thesisImages = Object.entries(
-  import.meta.glob("../../assets/thesis/*.{png,jpg,jpeg,webp,avif}", {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }),
-)
-  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-  .map(([, url]) => url);
 const imageSource = (image) =>
   image.startsWith("/") || image.startsWith("data:")
     ? image
@@ -28,7 +18,14 @@ const projects = [
     delivery:
       "Co-authored the thesis, leading the literature review, system methodology, and technical documentation of test results.",
     tech: ["CNN", "Facial recognition", "GPS", "Functional testing"],
-    images: thesisImages,
+    images: [
+      "/images/Agila-1.webp",
+      "/images/Agila-2.webp",
+      "/images/Agila-3.webp",
+      "/images/Agila-4.webp",
+      "/images/Agila-5.webp",
+      "/images/Agila-6.webp",
+    ],
     coverIndex: 0,
     featured: true,
   },
@@ -66,7 +63,7 @@ const projects = [
     ],
   },
   {
-    title: "Personal Portfolio",
+    title: "Personal Portfolio V1",
     category: "Design & development",
     summary: "A home for the things I’m building.",
     description:
