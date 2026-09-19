@@ -43,24 +43,28 @@ const projects = [
     images: ["district-wheels-1", "district-wheels-2", "district-wheels-3"],
   },
   {
-    title: "InternHub",
-    category: "UI/UX design",
-    summary: "A clearer path from student to intern.",
+    title: "Piksie Photobooth",
+    category: "App development & integration",
+    summary: "A playful photobooth experience built for live events.",
     description:
-      "A platform concept connecting students with internship opportunities, inspired by professional networking platforms.",
-    role: "Sole visual and structural designer",
+      "A production-ready photobooth app that guides guests from camera capture through photo customization and QR-code delivery.",
+    role:
+      "Sole developer responsible for coding and integrating the complete application.",
+    approachLabel: "Design approach",
     approach:
-      "Wireframes and an interface focused on simplifying the internship application journey.",
+      "Translated a supplied set of UI reference images into a cohesive, functional interface and connected every part of the experience.",
     delivery:
-      "A Figma design concept; my contribution focused on UI/UX rather than application development.",
-    tech: ["Figma", "Wireframing", "UI/UX"],
+      "A fully working photobooth application currently used at flea markets.",
+    tech: ["App development", "UI implementation", "System integration"],
     images: [
-      "internhub-1",
-      "internhub-2",
-      "internhub-3",
-      "internhub-4",
-      "internhub-5",
+      "/images/Piksie-1.webp",
+      "/images/Piksie-2.webp",
+      "/images/Piksie-3.webp",
+      "/images/Piksie-4.webp",
+      "/images/Piksie-5.webp",
+      "/images/Piksie-6.webp",
     ],
+    coverIndex: 0,
   },
   {
     title: "Personal Portfolio V1",
