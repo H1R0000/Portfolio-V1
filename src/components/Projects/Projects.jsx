@@ -94,6 +94,7 @@ const projects = [
   {
     title: "Personal Portfolio V1",
     category: "Design & development",
+    repository: "https://github.com/H1R0000/Portfolio-V1",
     summary: "A home for the things I’m building.",
     description:
       "A personal website bringing my development projects, design work, and technical learning together.",
