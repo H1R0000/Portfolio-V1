@@ -1,6 +1,6 @@
 # Hero Park — Portfolio V1
 
-A personal portfolio built with React, Vite, and Tailwind CSS. It presents selected projects, skills, certificates, and contact information.
+A responsive implementation of my [original Portfolio V1 design in Figma](https://www.figma.com/design/bJN9awabnyWaX6JhwgbKBy/Hero-Portfolio?node-id=0-1). It includes light and dark themes, skills, projects, certificates, and contact information.
 
 ## Run locally
 
@@ -17,4 +17,4 @@ npm run build
 npm run preview
 ```
 
-The production site is generated in `dist/`. Project descriptions and links are maintained in `src/components/Projects/Projects.jsx`, while project screenshots are stored in `public/images/`.
+The production site is generated in `dist/`. Page content is in `src/App.jsx`, and styles are in `src/index.css`. Images and certificates are stored in `public/`.
