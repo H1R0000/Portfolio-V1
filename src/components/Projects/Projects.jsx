@@ -7,7 +7,8 @@ const imageSource = (image) =>
 const projects = [
   {
     title: "CNN Facial Recognition & GPS Attendance App",
-    category: "Thesis · August 2026",
+    category: "Thesis",
+    repository: "https://github.com/EJhayGit/offline-trucking-attendance-thesis.git",
     summary: "Verifying attendance through facial recognition and location.",
     description:
       "A dual-factor biometric attendance system combining CNN-based facial recognition and GPS authentication for logistics applications.",
@@ -30,21 +31,31 @@ const projects = [
     featured: true,
   },
   {
-    title: "District Wheels",
-    category: "Web development",
-    summary: "A digital storefront for a small-scale world.",
+    title: "District Wheels Dispatch",
+    category: "Project",
+    website: "https://district-wheels-dispatch-directory.vercel.app/",
+    summary: "Find repeat buyers and reuse their saved shipping details.",
     description:
-      "A responsive storefront designed to showcase and market custom 1/64 scale diecast cars.",
-    role: "Web application development",
+      "District Wheels Dispatch Directory helps a fulfillment manager find repeat buyers and copy their saved shipping details into courier forms.",
+    role: "Sole developer responsible for the application's design, development, and integration.",
+    approachLabel: "Design approach",
     approach:
-      "A product-led interface that gives the cars and their details room to stand out.",
-    delivery: "A responsive storefront built with HTML, CSS, and JavaScript.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    images: ["district-wheels-1", "district-wheels-2", "district-wheels-3"],
+      "Used Codex AI design guidance to create a clean, minimalist interface inspired by contemporary websites.",
+    delivery:
+      "A fully working dispatch system that I use to manage fulfillment for my business.",
+    repository: "https://github.com/H1R0000/District-Wheels-Dispatch-Directory",
+    images: [
+      "/images/dispatch-directory-dark.png",
+      "/images/dispatch-directory-light.png",
+      "/images/dispatch-backup-dark.png",
+      "/images/dispatch-backup-light.png",
+    ],
+    coverIndex: 0,
   },
   {
     title: "Piksie Photobooth",
     category: "App development & integration",
+    website: "https://piksie.vercel.app/",
     summary: "A playful photobooth experience built for live events.",
     description:
       "A production-ready photobooth app that guides guests from camera capture through photo customization and QR-code delivery.",
@@ -65,6 +76,20 @@ const projects = [
       "/images/Piksie-6.webp",
     ],
     coverIndex: 0,
+  },
+  {
+    title: "District Wheels",
+    category: "Web development",
+    repository: "https://github.com/H1R0000/District-Wheels-Website.git",
+    summary: "A digital storefront for a small-scale world.",
+    description:
+      "A responsive storefront designed to showcase and market custom 1/64 scale diecast cars.",
+    role: "Web application development",
+    approach:
+      "A product-led interface that gives the cars and their details room to stand out.",
+    delivery: "A responsive storefront built with HTML, CSS, and JavaScript.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    images: ["district-wheels-1", "district-wheels-2", "district-wheels-3"],
   },
   {
     title: "Personal Portfolio V1",
@@ -130,18 +155,12 @@ export default function Projects() {
               </button>
             ) : (
               <div className="project-image thesis-placeholder">
-                <p className="eyebrow">Research & testing</p>
+                <p className="eyebrow">{project.category}</p>
                 <span className="thesis-mark" aria-hidden="true">
-                  CNN + GPS
+                  DW
                 </span>
-                <p>
-                  Facial recognition.
-                  <br />
-                  Location verification.
-                </p>
-                <span className="thesis-image-note">
-                  Screenshots coming soon
-                </span>
+                <p>{project.summary}</p>
+                <span className="thesis-image-note">District Wheels Dispatch</span>
               </div>
             )}
             <div className="project-copy">
@@ -150,28 +169,54 @@ export default function Projects() {
               </p>
               <h3>{project.title}</h3>
               <p className="project-summary">{project.summary}</p>
-              <p className="muted">{project.description}</p>
-              <ul className="tags" aria-label="Tools and skills">
-                {project.tech.map((tool) => (
-                  <li key={tool}>{tool}</li>
-                ))}
-              </ul>
-              <details className="project-story" open={project.featured}>
-                <summary>My contribution & approach</summary>
-                <dl>
-                  <dt>My role</dt>
-                  <dd>{project.role}</dd>
-                  <dt>{project.approachLabel ?? "Design approach"}</dt>
-                  <dd>{project.approach}</dd>
-                  <dt>What I delivered</dt>
-                  <dd>{project.delivery}</dd>
-                </dl>
-              </details>
-              {project.images.length > 0 && (
-                <button className="text-button" onClick={() => open(project)}>
-                  Explore screenshots ↗
-                </button>
+              {project.description && <p className="muted">{project.description}</p>}
+              {project.tech?.length > 0 && (
+                <ul className="tags" aria-label="Tools and skills">
+                  {project.tech.map((tool) => (
+                    <li key={tool}>{tool}</li>
+                  ))}
+                </ul>
               )}
+              {project.role && (
+                <details className="project-story" open={project.featured}>
+                  <summary>My contribution & approach</summary>
+                  <dl>
+                    <dt>My role</dt>
+                    <dd>{project.role}</dd>
+                    <dt>{project.approachLabel ?? "Design approach"}</dt>
+                    <dd>{project.approach}</dd>
+                    <dt>What I delivered</dt>
+                    <dd>{project.delivery}</dd>
+                  </dl>
+                </details>
+              )}
+              <div className="project-actions">
+                {project.images.length > 0 && (
+                  <button className="text-button" onClick={() => open(project)}>
+                    Explore screenshots ↗
+                  </button>
+                )}
+                {project.website && (
+                  <a
+                    className="text-button"
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit website ↗
+                  </a>
+                )}
+                {project.repository && (
+                  <a
+                    className="text-button"
+                    href={project.repository}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View repository ↗
+                  </a>
+                )}
+              </div>
             </div>
           </article>
         ))}
